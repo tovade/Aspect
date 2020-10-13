@@ -1,5 +1,6 @@
-const path = require('path');
+const { connect } = require('mongoose');
 const { promisify } = require('util');
+const path = require('path');
 const glob = promisify(require('glob'));
 
 module.exports = class Util {
@@ -39,6 +40,13 @@ module.exports = class Util {
                 event.emitter[event.type](name, (...args) => event.run(...args));
             }
         });
+    }
+
+    async loadDatabase() {
+        connect(this.client.dburl, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        }).then(console.log('MongoDB Connected!'));
     }
 
 }; 

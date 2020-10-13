@@ -12,6 +12,8 @@ module.exports = class AspectClient extends Client {
 
         this.prefix = options.prefix;
 
+        this.dburl = options.dburl;
+
         this.commands = new Collection();
 
         this.events = new Collection();
@@ -23,5 +25,6 @@ module.exports = class AspectClient extends Client {
         super.login(this.token);
         this.utils.loadCommands();
         this.utils.loadEvents();
+        this.utils.loadDatabase();
     }
 };
