@@ -27,4 +27,18 @@ module.exports = class Util {
             }
         });
     }
+
+    async loadEvents() {
+        return glob(`${this.directory}events/**/*.js`).then(events => {
+            for (const eventFile of events) {
+                delete require.cache[eventFile];
+                const { name } = path.parse(eventFile);
+                const File = require(eventFile);
+                const event = new File(this.client, name.toLowerCase());
+                this.client.events.set(event.name, event);
+                event.emitter[event.type](name, (...args) => event.run(...args));
+            }
+        });
+    }
+
 }; 
