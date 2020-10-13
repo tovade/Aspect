@@ -1,9 +1,10 @@
 {
-  "name": "Aspect",
+  "name": "aspect",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/bot.js",
   "license": "MIT",
   "dependencies": {
+    "discord.js": "^12.3.1",
     "eslint": "^7.11.0"
   }
 }
