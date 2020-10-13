@@ -1,0 +1,9 @@
+{
+  "name": "Aspect",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^7.11.0"
+  }
+}
