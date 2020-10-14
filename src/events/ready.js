@@ -1,5 +1,5 @@
 const Event = require('../structures/bases/events');
-const guildModel = require('../database/models/guild');
+const { guildModel } = require('../database/models/export/index');
 
 module.exports = class extends Event {
 
