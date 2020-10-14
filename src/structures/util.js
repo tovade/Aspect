@@ -9,7 +9,7 @@ module.exports = class Util {
         this.client = client;
     }
 
-    async modlog(message, user, action, reason, color, length) {
+    async modlog(message, user, action, reason, color, ref, length) {
         const caseManager = await require('../managers/caseManager')(message);
 
         const embed = {
