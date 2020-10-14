@@ -12,6 +12,12 @@ module.exports = class extends Command {
             description: 'Bans a member from the server... Duh!',
             category: 'Moderation',
             usage: '<member> [--ref=number] [--days=number] [...reason]',
+            examples: [
+                'ban @Coltz',
+                'ban @Coltz dumb.',
+                'ban @Tomson --ref=123 coz.',
+                'ban @Cotlz --ref=123 --days=7 silly.',
+            ],
         });
     }
 
