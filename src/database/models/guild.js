@@ -4,6 +4,7 @@ const guildModel = Schema({
     guildID: {
         type: SchemaTypes.String,
         required: true,
+        unique: true,
     },
     prefix: {
         type: SchemaTypes.String,
