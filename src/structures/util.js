@@ -10,6 +10,8 @@ module.exports = class Util {
     }
 
     async modlog(message, user, action, reason, color, length) {
+        const caseManager = await require('../managers/caseManager')(message);
+
         const embed = {
             color: color,
             thumbnail: {
@@ -26,6 +28,9 @@ module.exports = class Util {
                 ${length ? `**Length:** ${length}` : ''}
             `,
             timestamp: Date.now(),
+            footer: {
+                text: `Case: ${caseManager}`,
+            },
         };
 
         const channel = message.guild.channels.cache.get('764566201895878676');

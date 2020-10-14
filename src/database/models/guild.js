@@ -11,6 +11,11 @@ const guildModel = Schema({
         default: '!',
         required: true,
     },
+    caseCount: {
+        type: SchemaTypes.Number,
+        default: 0,
+        required: true,
+    },
 });
 
 module.exports = model('guild', guildModel);
