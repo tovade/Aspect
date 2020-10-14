@@ -9,6 +9,21 @@ module.exports = class Util {
         this.client = client;
     }
 
+    removeDuplicates(arr) {
+        const data = [];
+
+        arr.forEach(element => {
+            if (data.includes(element)) return;
+            else data.push(element);
+        });
+
+        return data;
+    }
+
+    capitalise(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    }
+
     async modlog(message, user, client, action, reason, color, ref, length) {
         const caseManager = require('../managers/caseManager');
 
