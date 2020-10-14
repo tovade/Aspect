@@ -28,6 +28,14 @@ module.exports = class extends Command {
                 },
             );
 
+            if (command.examples.length) {
+                embed.fields.push({
+                    name: '❯ Examples',
+                    value: command.examples.map(example => `\`${example}\``).join('\n'),
+                    inline: true,
+                });
+            }
+
             if (command.aliases.length) {
                 embed.fields.push({
                     name: '❯ Aliases',

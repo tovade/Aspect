@@ -5,6 +5,8 @@ module.exports = class Command {
         this.name = options.name || name;
         this.description = options.description || null;
         this.aliases = options.aliases || [];
+        this.examples = options.examples || [];
+        this.usage = options.usage || null;
         this.category = options.category || null;
         this.requireMentioned = options.requireMentioned || null;
     }

@@ -8,6 +8,12 @@ module.exports = class extends Command {
             name: 'kick',
             description: 'Kicks a member from the server... Duh!',
             category: 'Moderation',
+            usage: '<member> [--ref=case] [...reason]',
+            examples: [
+                'kick @Coltz',
+                'kick @Coltz dumb.',
+                'kick @Tomson --ref=123 coz.',
+            ],
         });
     }
 
