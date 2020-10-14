@@ -9,6 +9,29 @@ module.exports = class Util {
         this.client = client;
     }
 
+    async modlog(message, user, action, reason, color, length) {
+        const embed = {
+            color: color,
+            thumbnail: {
+                url: user.displayAvatarURL({ dynamic: true, format: 'png' }),
+            },
+            author: {
+                name: `${message.author.tag} - ${message.author.id}`,
+                icon_url: message.author.displayAvatarURL({ dynamic: true, format: 'png' }),
+            },
+            description: `
+                **Member:** ${user.tag} - ${user.id}
+                **Action:** ${action}
+                **Reason:** ${reason || 'Not specified'}
+                ${length ? `**Length:** ${length}` : ''}
+            `,
+            timestamp: Date.now(),
+        };
+
+        const channel = message.guild.channels.cache.get('764566201895878676');
+        channel.send({ embed: embed });
+    }
+
     get directory() {
         return `${path.dirname(require.main.filename)}${path.sep}`;
     }
