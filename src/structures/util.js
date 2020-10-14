@@ -9,8 +9,10 @@ module.exports = class Util {
         this.client = client;
     }
 
-    async modlog(message, user, action, reason, color, ref, length) {
-        const caseManager = await require('../managers/caseManager')(message);
+    async modlog(message, user, client, action, reason, color, ref, length) {
+        const caseManager = require('../managers/caseManager');
+
+        const caseNumber = await caseManager.updateCaseCount(message, client);
 
         const embed = {
             color: color,
@@ -29,12 +31,14 @@ module.exports = class Util {
             `,
             timestamp: Date.now(),
             footer: {
-                text: `Case: ${caseManager}`,
+                text: `Case: ${caseNumber}`,
             },
         };
 
         const channel = message.guild.channels.cache.get('764566201895878676');
-        channel.send({ embed: embed });
+        const msg = await channel.send({ embed: embed });
+
+        await caseManager.createCaseDoc(msg, user, message.guild, caseNumber);
     }
 
     get directory() {

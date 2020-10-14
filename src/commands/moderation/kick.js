@@ -26,6 +26,6 @@ module.exports = class extends Command {
         }
 
         mentionedMember.kick([reason]).catch(err => console.log(err));
-        this.client.utils.modlog(message, mentionedMember.user, 'Kick', reason, 'ORANGE', ref);
+        this.client.utils.modlog(message, mentionedMember.user, this.client, 'Kick', reason, 'ORANGE', ref);
     }
 }; 
