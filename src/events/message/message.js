@@ -1,5 +1,7 @@
 const Event = require('../../structures/bases/events');
 
+const memberRegex = RegExp(/<@!?(\d{17,19})>/);
+
 module.exports = class extends Event {
 
     async run(message) {
@@ -13,8 +15,17 @@ module.exports = class extends Event {
 
         if (!command) return;
 
+        const memberID = memberRegex.test(args[0]) ? memberRegex.exec(args[0])[1] : args[0];
+        const mentionedMember = message.guild.members.cache.get(memberID);
+
+        if (command.requireMentioned) {
+            if (!mentionedMember) {
+                return message.channel.send(`You need to mention a member you want to \`${command.name}\``);
+            }
+        }
+
         try {
-            command.execute(message, args);
+            command.execute(message, args, mentionedMember);
         }
         catch (err) {
             console.log(err);
