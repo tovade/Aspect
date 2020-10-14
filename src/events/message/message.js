@@ -3,9 +3,11 @@ const Event = require('../../structures/bases/events');
 module.exports = class extends Event {
 
     async run(message) {
-        if (!message.content.startsWith(this.client.prefix) || message.bot || !message.guild) return;
+        const guildDoc = this.client.guildCache.get(message.guild.id);
 
-        const [cmd, ...args] = message.content.slice(this.client.prefix.length).trim().split(/ +/g);
+        if (guildDoc ? !message.content.startsWith(guildDoc.prefix) : null || message.bot || !message.guild) return;
+
+        const [cmd, ...args] = message.content.slice(guildDoc.prefix.length).trim().split(/ +/g);
 
         const command = this.client.commands.get(cmd);
 

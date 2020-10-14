@@ -10,8 +10,6 @@ module.exports = class AspectClient extends Client {
 
         this.token = options.bot_token;
 
-        this.prefix = options.prefix;
-
         this.dburl = options.dburl;
 
         this.guildCache = new Collection();
