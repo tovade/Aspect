@@ -27,6 +27,7 @@ module.exports = class Util {
                 **Member:** ${user.tag} - ${user.id}
                 **Action:** ${action}
                 **Reason:** ${reason || 'Not specified'}
+                ${ref ? `**Ref:** ${ref}` : ''}
                 ${length ? `**Length:** ${length}` : ''}
             `,
             timestamp: Date.now(),
