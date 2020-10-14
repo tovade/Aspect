@@ -14,6 +14,8 @@ module.exports = class AspectClient extends Client {
 
         this.dburl = options.dburl;
 
+        this.guildCache = new Collection();
+
         this.commands = new Collection();
 
         this.events = new Collection();
