@@ -28,8 +28,13 @@ module.exports = class extends Command {
             const guildDoc = this.client.guildCache.get(message.guild.id);
             const refRegex = RegExp(`^--ref=(([1-9][0-9]?|${guildDoc.caseCount}))$`);
 
-            if (refRegex.test(option)) {
-                const caseNumber = parseInt(refRegex.exec(option)[1]);
+            const daysExec = daysRegex.exec(option);
+            const refExec = refRegex.exec(option);
+
+            if (!daysExec && !refExec) break;
+
+            if (refExec) {
+                const caseNumber = parseInt(refExec[1]);
 
                 const refNumber = await caseModel.findOne({
                     guildID: message.guild.id,
@@ -43,8 +48,8 @@ module.exports = class extends Command {
                 }
             }
 
-            if (daysRegex.test(option)) {
-                var days = daysRegex.exec(option)[1]; // eslint-disable-line no-var
+            if (daysExec) {
+                var days = daysExec[1]; // eslint-disable-line no-var
                 reason.shift();
             }
         }

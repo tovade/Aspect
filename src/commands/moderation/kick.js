@@ -27,8 +27,12 @@ module.exports = class extends Command {
             const guildDoc = this.client.guildCache.get(message.guild.id);
             const refRegex = RegExp(`^--ref=(([1-9][0-9]?|${guildDoc.caseCount}))$`);
 
-            if (refRegex.test(option)) {
-                const caseNumber = parseInt(refRegex.exec(option)[1]);
+            const refExec = refRegex.exec(option);
+
+            if (!refExec) break;
+
+            if (refExec) {
+                const caseNumber = parseInt(refExec[1]);
 
                 const refNumber = await caseModel.findOne({
                     guildID: message.guild.id,
