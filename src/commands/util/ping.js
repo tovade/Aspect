@@ -6,6 +6,7 @@ module.exports = class extends Command {
         super(...args, {
             name: 'ping',
             description: 'Pong!',
+            category: 'Util',
         });
     }
 

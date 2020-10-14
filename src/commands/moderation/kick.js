@@ -7,6 +7,7 @@ module.exports = class extends Command {
         super(...args, {
             name: 'kick',
             description: 'Kicks a member from the server... Duh!',
+            category: 'Moderation',
         });
     }
 
