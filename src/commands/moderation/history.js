@@ -21,9 +21,7 @@ module.exports = class extends Command {
             usage: '<member>',
             examples: [
                 'history @Coltz',
-                'ban 611466971371929602',
-                'ban @Tomson --ref=123 coz.',
-                'ban @Cotlz --ref=123 --days=7 silly.',
+                'history 611466971371929602',
             ],
         });
     }
