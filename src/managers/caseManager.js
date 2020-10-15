@@ -12,12 +12,12 @@ async function updateCaseCount(message, client) {
     return guildDoc.caseCount;
 }
 
-async function createCaseDoc(msg, user, guild, action, caseNumber) {
+async function createCaseDoc(msg, user, guild, caseNumber, logArr) {
     const caseDoc = new caseModel({
         guildID: guild.id,
         case: caseNumber,
         memberID: user.id,
-        action: action,
+        logArr: logArr,
         date: Date.now(),
         messageLink: msg.url,
     });

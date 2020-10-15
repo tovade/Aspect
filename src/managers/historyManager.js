@@ -24,8 +24,6 @@ async function manageHistory(guild, user, action) {
     historyDoc[getAction[action]] += 1;
 
     await historyDoc.save().catch(err => console.log(err));
-
-    console.log(historyDoc);
 }
 
 module.exports = {

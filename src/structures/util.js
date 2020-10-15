@@ -28,6 +28,14 @@ module.exports = class Util {
         require('../managers/historyManager').manageHistory(message.guild, user, action);
         const caseManager = require('../managers/caseManager');
 
+        const data = [];
+
+        data.push(`**Member:** ${user.tag} - ${user.id}`);
+        data.push(`**Action:** ${action}`);
+        data.push(`**Reason:** ${reason || 'Not specified'}`);
+        if (ref) data.push(`**Ref:** ${ref}`);
+        if (length) data.push(`**Length:** ${length}`);
+
         const caseNumber = await caseManager.updateCaseCount(message, client);
 
         const embed = {
@@ -39,13 +47,7 @@ module.exports = class Util {
                 name: `${message.author.tag} - ${message.author.id}`,
                 icon_url: message.author.displayAvatarURL({ dynamic: true, format: 'png' }),
             },
-            description: `
-                **Member:** ${user.tag} - ${user.id}
-                **Action:** ${action}
-                **Reason:** ${reason || 'Not specified'}
-                ${ref ? `**Ref:** ${ref}` : ''}
-                ${length ? `**Length:** ${length}` : ''}
-            `,
+            description: data.join('\n'),
             timestamp: Date.now(),
             footer: {
                 text: `Case: ${caseNumber}`,
@@ -55,7 +57,7 @@ module.exports = class Util {
         const channel = message.guild.channels.cache.get('764566201895878676');
         const msg = await channel.send({ embed: embed });
 
-        await caseManager.createCaseDoc(msg, user, message.guild, action, caseNumber);
+        await caseManager.createCaseDoc(msg, user, message.guild, caseNumber, data);
     }
 
     get directory() {
