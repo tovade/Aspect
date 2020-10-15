@@ -1,5 +1,5 @@
 const Event = require('../../structures/bases/events');
-
+const { ownerID } = require('../../../config.json')
 const memberRegex = RegExp(/<@!?(\d{17,19})>/);
 
 module.exports = class extends Event {
@@ -22,6 +22,9 @@ module.exports = class extends Event {
             if (!mentionedMember) {
                 return message.channel.send(`You need to mention a member you want to \`${command.name}\``);
             }
+        }
+        if(command.ownerOnly && message.author.id !== ownerID) {
+         return message.reply("You are not the owner!")
         }
 
         try {

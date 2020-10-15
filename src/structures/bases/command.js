@@ -9,6 +9,7 @@ module.exports = class Command {
         this.usage = options.usage || null;
         this.category = options.category || null;
         this.requireMentioned = options.requireMentioned || null;
+        this.ownerOnly = option.ownerOnly || false;
     }
 
 }; 
