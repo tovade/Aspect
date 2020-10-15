@@ -9,7 +9,7 @@ const caseModel = Schema({
         type: SchemaTypes.Number,
         required: true,
     },
-    committerID: {
+    memberID: {
         type: SchemaTypes.String,
         required: true,
     },

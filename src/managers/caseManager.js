@@ -16,7 +16,7 @@ async function createCaseDoc(msg, user, guild, action, caseNumber) {
     const caseDoc = new caseModel({
         guildID: guild.id,
         case: caseNumber,
-        committerID: user.id,
+        memberID: user.id,
         action: action,
         date: Date.now(),
         messageLink: msg.url,

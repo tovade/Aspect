@@ -25,7 +25,7 @@ module.exports = class extends Command {
 
         const caseDoc = await caseModel.find({
             guildID: message.guild.id,
-            committerID: user.id,
+            memberID: user.id,
         });
 
         if (!caseDoc.length) {
