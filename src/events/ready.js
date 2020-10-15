@@ -1,5 +1,5 @@
 const Event = require('../structures/bases/events');
-const { guildModel } = require('../database/models/export/index');
+const { guildModel, lockdownModel } = require('../database/models/export/index');
 
 module.exports = class extends Event {
 
@@ -24,6 +24,20 @@ module.exports = class extends Event {
             }
 
             this.client.guildCache.set(guild[0], guildDoc);
+
+            setInterval(async () => {
+                const lockdownArray = await lockdownModel.find({ guildID: guild[0] });
+
+                lockdownArray.forEach(async lockdown => {
+                    if (Date.now() >= Number(lockdown.length)) {
+                        const textChannel = guild[1].channels.cache.get(lockdown.channelID);
+
+                        textChannel.updateOverwrite(guild[1].roles.everyone, { SEND_MESSAGES: true }).catch(err => console.log(err));
+
+                        await lockdown.deleteOne();
+                    }
+                });
+            }, 3000);
         }
     }
 }; 

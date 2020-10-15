@@ -48,6 +48,7 @@ module.exports = class extends Command {
             length: Date.now() + ms(time),
         });
 
+        channel.updateOverwrite(message.guild.roles.everyone, { SEND_MESSAGES: false });
         await lockdownDoc.save().catch(err => console.log(err));
     }
 }; 
