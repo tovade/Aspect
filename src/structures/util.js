@@ -25,6 +25,7 @@ module.exports = class Util {
     }
 
     async modlog(message, user, client, action, reason, color, ref, length) {
+        require('../managers/historyManager').manageHistory(message.guild, user, action);
         const caseManager = require('../managers/caseManager');
 
         const caseNumber = await caseManager.updateCaseCount(message, client);
