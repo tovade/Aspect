@@ -13,6 +13,14 @@ const caseModel = Schema({
         type: SchemaTypes.String,
         required: true,
     },
+    action: {
+        type: SchemaTypes.String,
+        required: true,
+    },
+    date: {
+        type: SchemaTypes.Date,
+        required: true,
+    },
     messageLink: {
         type: SchemaTypes.String,
         required: true,

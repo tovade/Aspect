@@ -55,7 +55,7 @@ module.exports = class Util {
         const channel = message.guild.channels.cache.get('764566201895878676');
         const msg = await channel.send({ embed: embed });
 
-        await caseManager.createCaseDoc(msg, user, message.guild, caseNumber);
+        await caseManager.createCaseDoc(msg, user, message.guild, action, caseNumber);
     }
 
     get directory() {
