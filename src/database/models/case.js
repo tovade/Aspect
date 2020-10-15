@@ -13,8 +13,8 @@ const caseModel = Schema({
         type: SchemaTypes.String,
         required: true,
     },
-    logArr: {
-        type: SchemaTypes.Array,
+    action: {
+        type: SchemaTypes.String,
         required: true,
     },
     date: {
